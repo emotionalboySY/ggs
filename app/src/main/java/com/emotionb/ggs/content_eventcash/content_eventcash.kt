@@ -11,18 +11,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.lifecycle.ViewModel
 import com.emotionb.ggs.R
 
-
 @Composable
-fun NavEventCash() {
+fun NavEventCash(viewModel: ViewModel) {
+
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.error)
     ) {
         Text(
-            text = stringResource(id = R.string.screen_title_eventcash),
+            text = 1,
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center,
             color = Color.White,
