@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ggs</string>
+    <string name="screen_title_main">메인</string>
+    <string name="screen_title_profile">프로필</string>
+    <string name="screen_title_eventcash">이벤트캐시</string>
+    <string name="screen_title_settings">설정</string>
+    <string name="nav_title_main">메인</string>
+    <string name="nav_title_profile">프로필</string>
+    <string name="nav_title_eventcash">이벤트캐시</string>
+    <string name="nav_title_settings">설정</string>
+
+</resources>
