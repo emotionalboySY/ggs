@@ -63,18 +63,13 @@ class MainActivity : ComponentActivity() {
 fun MainScreen() {
     val navController = rememberNavController()
 
-    val eventCashViewModel = ViewModelProvider(
-        this,
-        EventCashViewModelFactory()
-    )[EventCashViewModel::class.java]
-
     Scaffold (
         bottomBar = {
             BottomNavigation(navController = navController)
         }
     ) {
         Box(Modifier.padding(it)) {
-            NavigationGraph(navController = navController, eventCashViewModel = eventCashViewModel)
+            NavigationGraph(navController = navController)
         }
     }
 }
@@ -131,7 +126,7 @@ fun BottomNavigation(
 }
 
 @Composable
-fun NavigationGraph(navController: NavHostController, eventCashViewModel: EventCashViewModel) {
+fun NavigationGraph(navController: NavHostController) {
 
     NavHost(navController = navController, startDestination = BottomNavItem.Main.screenRoute) {
         composable(BottomNavItem.Main.screenRoute) {
@@ -141,7 +136,7 @@ fun NavigationGraph(navController: NavHostController, eventCashViewModel: EventC
             NavProfile()
         }
         composable(BottomNavItem.EventCash.screenRoute) {
-            NavEventCash(viewModel = eventCashViewModel)
+            NavEventCash()
         }
         composable(BottomNavItem.Settings.screenRoute) {
             NavSettings()
