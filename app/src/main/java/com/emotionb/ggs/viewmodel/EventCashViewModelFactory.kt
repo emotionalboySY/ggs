@@ -1,4 +1,4 @@
-package com.emotionb.ggs.content_eventcash
+package com.emotionb.ggs.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

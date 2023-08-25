@@ -25,18 +25,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.emotionb.ggs.content_eventcash.EventCashViewModel
-import com.emotionb.ggs.content_eventcash.EventCashViewModelFactory
-import com.emotionb.ggs.content_eventcash.NavEventCash
-import com.emotionb.ggs.content_main.NavMain
-import com.emotionb.ggs.content_profile.NavProfile
-import com.emotionb.ggs.content_settings.NavSettings
+import com.emotionb.ggs.pages.content_eventcash.NavEventCash
+import com.emotionb.ggs.pages.content_main.NavMain
+import com.emotionb.ggs.pages.content_profile.NavProfile
+import com.emotionb.ggs.pages.content_settings.NavSettings
 import com.emotionb.ggs.ui.theme.GgsTheme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.emotionb.ggs.content_settings
+package com.emotionb.ggs.pages.content_main
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -14,14 +14,14 @@ import androidx.compose.ui.text.style.TextAlign
 import com.emotionb.ggs.R
 
 @Composable
-fun NavSettings() {
+fun NavMain() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.Cyan)
+            .background(MaterialTheme.colorScheme.primary)
     ) {
         Text(
-            text = stringResource(id = R.string.screen_title_settings),
+            text = stringResource(id = R.string.screen_title_main),
             style = MaterialTheme.typography.headlineLarge,
             textAlign = TextAlign.Center,
             color = Color.White,
