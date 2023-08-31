@@ -31,6 +31,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.emotionb.ggs.pages.content_eventcash.NavEventCash
+import com.emotionb.ggs.pages.content_eventcash.NavEventCashScreen
 import com.emotionb.ggs.pages.content_main.NavMain
 import com.emotionb.ggs.pages.content_profile.NavProfile
 import com.emotionb.ggs.pages.content_settings.NavSettings
@@ -133,7 +134,7 @@ fun NavigationGraph(navController: NavHostController) {
             NavProfile()
         }
         composable(BottomNavItem.EventCash.screenRoute) {
-            NavEventCash()
+            NavEventCashScreen()
         }
         composable(BottomNavItem.Settings.screenRoute) {
             NavSettings()
@@ -144,14 +145,14 @@ fun NavigationGraph(navController: NavHostController) {
 sealed class BottomNavItem(
     val title: Int, val icon: Int, val screenRoute: String
 ) {
-    object Main : BottomNavItem(R.string.nav_title_main, R.drawable.ic_launcher_foreground, MAIN)
-    object Profile :
+    data object Main : BottomNavItem(R.string.nav_title_main, R.drawable.ic_launcher_foreground, MAIN)
+    data object Profile :
         BottomNavItem(R.string.nav_title_profile, R.drawable.ic_launcher_foreground, PROFILE)
 
-    object EventCash :
+    data object EventCash :
         BottomNavItem(R.string.nav_title_eventcash, R.drawable.ic_launcher_foreground, EVENTCASH)
 
-    object Settings :
+    data object Settings :
         BottomNavItem(R.string.nav_title_settings, R.drawable.ic_launcher_foreground, SETTINGS)
 }
 

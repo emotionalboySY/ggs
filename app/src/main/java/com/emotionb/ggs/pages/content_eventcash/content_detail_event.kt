@@ -26,12 +26,18 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import com.emotionb.ggs.model.EventData
+import com.emotionb.ggs.viewmodel.EventCashViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EventDetail(eventDataList: List<EventData>) {
+fun EventDetail(
+    eventDataList: List<EventData>,
+    navController: NavHostController
+) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(vertical = 5.dp)
@@ -46,7 +52,10 @@ fun EventDetail(eventDataList: List<EventData>) {
                     .padding(horizontal = 10.dp, vertical = 5.dp)
                     .fillMaxWidth(),
                 onClick = {
-
+                    Log.d("OnClickEvent", "OnClick on Event has occurred")
+                    val listType = "Event"
+                    val contentId = it.link.filter{it.isDigit()}
+                    navController.navigate("imageDetail/$listType/$contentId")
                 }
             ) {
                 Column {

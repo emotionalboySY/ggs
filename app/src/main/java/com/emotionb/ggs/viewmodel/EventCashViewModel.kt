@@ -22,6 +22,7 @@ class EventCashViewModel : ViewModel() {
 
     private lateinit var _eventResponse: HttpResponse
     private lateinit var _cashShopResponse: HttpResponse
+    private lateinit var _imageSrcResponse: HttpResponse
     private var _document: Document = Document("")
 
     private val _eventContents = MutableStateFlow<List<EventData>>(emptyList())
@@ -29,6 +30,9 @@ class EventCashViewModel : ViewModel() {
 
     private val _cashShopContents = MutableStateFlow<List<CashShopData>>(emptyList())
     val cashShopContents: StateFlow<List<CashShopData>> = _cashShopContents
+
+    private val _imageSrcList = MutableStateFlow<List<String>>(emptyList())
+    val imageSrcList: StateFlow<List<String>> = _imageSrcList
 
     init {
         getEventData()
@@ -86,8 +90,24 @@ class EventCashViewModel : ViewModel() {
                 period = period,
                 link = link
             )
-            Log.d("CASHCONTEBT_SINGLE", "${singleData.imgSrc} // ${singleData.title} // ${singleData.update} // ${singleData.period} // ${singleData.link}")
+            Log.d("CASHCONTENT_SINGLE", "${singleData.imgSrc} // ${singleData.title} // ${singleData.update} // ${singleData.period} // ${singleData.link}")
             _cashShopContents.emit(_cashShopContents.value.plus(singleData))
+        }
+    }
+
+    suspend fun getImagesfromEventCashPage(link: String) {
+        viewModelScope.launch {
+            Log.d("Link in ViewModel", link)
+            _imageSrcResponse = service.getResponse(link)
+            Log.d("NULL", _imageSrcResponse.readText())
+            _document = Jsoup.parse(_imageSrcResponse.readText())
+            val elements = _document.select("div.new_board_con")
+            Log.d("elements after selection", elements.toString())
+            for(element: Element in elements) {
+                val imageSrc = element.select("img").attr("src")
+                _imageSrcList.emit(_imageSrcList.value.plus(imageSrc))
+            }
+            Log.d("IMAGE SOURCE LIST", _imageSrcList.value.toString())
         }
     }
 }

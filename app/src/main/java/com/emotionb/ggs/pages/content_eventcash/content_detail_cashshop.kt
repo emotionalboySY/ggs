@@ -1,5 +1,6 @@
 package com.emotionb.ggs.pages.content_eventcash
 
+import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -25,12 +26,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import com.emotionb.ggs.model.CashShopData
+import com.emotionb.ggs.viewmodel.EventCashViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CashShopDetail(cashShopDataList: List<CashShopData>) {
+fun CashShopDetail(
+    cashShopDataList: List<CashShopData>,
+    navController: NavHostController ) {
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -46,7 +51,10 @@ fun CashShopDetail(cashShopDataList: List<CashShopData>) {
                     .padding(horizontal = 10.dp, vertical = 5.dp)
                     .fillMaxWidth(),
                 onClick = {
-
+                    Log.d("OnClickEvent", "OnClick on CashShop has occurred")
+                    val listType = "CashShop"
+                    val contentId = it.link.filter{it.isDigit()}
+                    navController.navigate("imageDetail/$listType/$contentId")
                 }
             ) {
                 Column {
