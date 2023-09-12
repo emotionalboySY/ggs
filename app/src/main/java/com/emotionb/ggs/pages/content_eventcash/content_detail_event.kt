@@ -1,5 +1,7 @@
 package com.emotionb.ggs.pages.content_eventcash
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,15 +24,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
 import coil.compose.SubcomposeAsyncImage
 import com.emotionb.ggs.model.EventData
-import com.emotionb.ggs.viewmodel.EventCashViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +39,7 @@ fun EventDetail(
     eventDataList: List<EventData>,
     navController: NavHostController
 ) {
+    val context = LocalContext.current
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(vertical = 5.dp)
@@ -53,9 +55,12 @@ fun EventDetail(
                     .fillMaxWidth(),
                 onClick = {
                     Log.d("OnClickEvent", "OnClick on Event has occurred")
-                    val listType = "Event"
-                    val contentId = it.link.filter{it.isDigit()}
-                    navController.navigate("imageDetail/$listType/$contentId")
+//                    val listType = "Event"
+//                    val contentId = it.link.filter{it.isDigit()}
+//                    navController.navigate("imageDetail/$listType/$contentId")
+
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://m.maplestory.nexon.com" + it.link))
+                    context.startActivity(intent)
                 }
             ) {
                 Column {

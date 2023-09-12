@@ -1,5 +1,7 @@
 package com.emotionb.ggs.pages.content_eventcash
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +24,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -37,6 +40,7 @@ fun CashShopDetail(
     cashShopDataList: List<CashShopData>,
     navController: NavHostController ) {
 
+    var context = LocalContext.current
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
         contentPadding = PaddingValues(vertical = 5.dp)
@@ -52,9 +56,12 @@ fun CashShopDetail(
                     .fillMaxWidth(),
                 onClick = {
                     Log.d("OnClickEvent", "OnClick on CashShop has occurred")
-                    val listType = "CashShop"
-                    val contentId = it.link.filter{it.isDigit()}
-                    navController.navigate("imageDetail/$listType/$contentId")
+
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://m.maplestory.nexon.com" + it.link))
+                    context.startActivity(intent)
+//                    val listType = "CashShop"
+//                    val contentId = it.link.filter{it.isDigit()}
+//                    navController.navigate("imageDetail/$listType/$contentId")
                 }
             ) {
                 Column {

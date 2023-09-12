@@ -9,9 +9,11 @@ import com.emotionb.ggs.service.HttpRequestService
 import com.emotionb.ggs.service.HttpRoutes
 import io.ktor.client.statement.HttpResponse
 import io.ktor.client.statement.readText
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
@@ -22,7 +24,7 @@ class EventCashViewModel : ViewModel() {
 
     private lateinit var _eventResponse: HttpResponse
     private lateinit var _cashShopResponse: HttpResponse
-    private lateinit var _imageSrcResponse: HttpResponse
+    private lateinit var _imageSrcResponse: Document
     private var _document: Document = Document("")
 
     private val _eventContents = MutableStateFlow<List<EventData>>(emptyList())
@@ -97,12 +99,13 @@ class EventCashViewModel : ViewModel() {
 
     suspend fun getImagesfromEventCashPage(link: String) {
         viewModelScope.launch {
+            _imageSrcList.emit(emptyList())
             Log.d("Link in ViewModel", link)
-            _imageSrcResponse = service.getResponse(link)
-            Log.d("NULL", _imageSrcResponse.readText())
-            _document = Jsoup.parse(_imageSrcResponse.readText())
-            val elements = _document.select("div.new_board_con")
-            Log.d("elements after selection", elements.toString())
+            withContext(Dispatchers.IO) {
+                _imageSrcResponse = Jsoup.connect(link).get()
+            }
+            val elements = _imageSrcResponse.select("div.new_board_con")
+            Log.d("elements after selection", elements.html())
             for(element: Element in elements) {
                 val imageSrc = element.select("img").attr("src")
                 _imageSrcList.emit(_imageSrcList.value.plus(imageSrc))
