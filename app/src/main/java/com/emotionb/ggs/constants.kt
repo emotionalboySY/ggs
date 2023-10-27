@@ -1,6 +1,7 @@
 package com.emotionb.ggs
 
-const val MAIN = "MAIN"
-const val PROFILE = "PROFILE"
+const val QUEST = "QUEST"
+const val SIMULATION = "SIMULATION"
+const val HOME = "HOME"
 const val EVENTCASH = "EVENTCASH"
-const val SETTINGS = "SETTINGS"
+const val MYPAGE = "MYPAGE"

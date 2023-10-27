@@ -1,12 +1,14 @@
 <resources>
     <string name="app_name">ggs</string>
-    <string name="screen_title_main">메인</string>
-    <string name="screen_title_profile">프로필</string>
-    <string name="screen_title_eventcash">이벤트캐시</string>
-    <string name="screen_title_settings">설정</string>
-    <string name="nav_title_main">메인</string>
-    <string name="nav_title_profile">프로필</string>
-    <string name="nav_title_eventcash">이벤트캐시</string>
-    <string name="nav_title_settings">설정</string>
+    <string name="screen_title_quest">퀘스트</string>
+    <string name="screen_title_simulation">시물레이션</string>
+    <string name="screen_title_home">홈</string>
+    <string name="screen_title_eventcash">이벤트/캐시</string>
+    <string name="screen_title_mypage">마이페이지</string>
+    <string name="nav_title_quest">퀘스트</string>
+    <string name="nav_title_simulation">시물레이션</string>
+    <string name="nav_title_home">홈</string>
+    <string name="nav_title_eventcash">이벤트/캐시</string>
+    <string name="nav_title_mypage">마이페이지</string>
 
 </resources>
